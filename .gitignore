@@ -1,0 +1,21 @@
+## Eclipse
+target/
+.settings/
+.classpath
+.project
+
+## Gradle
+.gradle/
+
+## Intellij
+.idea/
+.idea/libraries
+
+## Archives
+*.zip
+
+## Misc Files
+*.log
+*.iml
+*.ipr
+*.iws
