@@ -16,7 +16,7 @@ public class Poller {
     this.pollDelayMillis = pollDelayMillis;
   }
 
-  public <T> void check(Probe<T> probe, Matcher<Iterable<? extends String>> matcher) throws InterruptedException {
+  public <T> void check(Probe<T> probe, Matcher<? super T> matcher) throws InterruptedException {
 
     timeoutTime = System.currentTimeMillis() + timeoutMillis;
 
@@ -35,7 +35,7 @@ public class Poller {
     return System.currentTimeMillis() > timeoutTime;
   }
 
-  private <T> String describeFailureOf(T sample, Matcher<Iterable<? extends String>> matcher) {
+  private <T> String describeFailureOf(T sample, Matcher<? super T> matcher) {
     Description description = new StringDescription();
     description.appendText("\nExpected: ")
                .appendDescriptionOf(matcher)

@@ -5,6 +5,7 @@ import com.thehutgroup.async.SlowListProbe;
 import org.junit.Test;
 
 import static com.thehutgroup.async.AssertEventually.assertEventually;
+import static java.util.Arrays.asList;
 import static java.util.concurrent.CompletableFuture.runAsync;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
@@ -17,7 +18,8 @@ public class SlowListAsyncTest {
   @Test
   public void addElementToSlowList() throws InterruptedException {
     runAsync(() -> slowList.add("succeed"));
-//    assertThat(asList("succeed"), contains("fail"));
+
+    assertThat(asList("succeed"), contains("fail"));
     assertEventually(
         slowList(), contains("succeed"));
   }
