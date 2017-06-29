@@ -4,7 +4,7 @@ import com.thehutgroup.SlowList;
 
 import java.util.List;
 
-public class SlowListProbe implements Probe {
+public class SlowListProbe implements Probe<List<String>> {
 
   private SlowList slowList;
 

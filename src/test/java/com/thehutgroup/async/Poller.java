@@ -4,8 +4,6 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.StringDescription;
 
-import java.util.List;
-
 public class Poller {
 
   private final int timeoutMillis;
@@ -18,11 +16,11 @@ public class Poller {
     this.pollDelayMillis = pollDelayMillis;
   }
 
-  public void check(Probe probe, Matcher<Iterable<? extends String>> matcher) throws InterruptedException {
+  public <T> void check(Probe<T> probe, Matcher<Iterable<? extends String>> matcher) throws InterruptedException {
 
     timeoutTime = System.currentTimeMillis() + timeoutMillis;
 
-    List<String> sample = probe.sample();
+    T sample = probe.sample();
     while (!matcher.matches(sample)) {
 
       if (timedOut())
@@ -37,7 +35,7 @@ public class Poller {
     return System.currentTimeMillis() > timeoutTime;
   }
 
-  private String describeFailureOf(List<String> sample, Matcher<Iterable<? extends String>> matcher) {
+  private <T> String describeFailureOf(T sample, Matcher<Iterable<? extends String>> matcher) {
     Description description = new StringDescription();
     description.appendText("\nExpected: ")
                .appendDescriptionOf(matcher)
