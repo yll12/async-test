@@ -1,12 +1,10 @@
 package com.thehutgroup.async;
 
-import org.hamcrest.Description;
+import java.util.List;
 
 public interface Probe {
 
-  boolean isSatisfied();
-  void sample();
-  void describeFailureTo(Description d);
+  List<String> sample();
 
 }
 

@@ -1,7 +1,10 @@
 package com.thehutgroup.async;
 
 import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 import org.hamcrest.StringDescription;
+
+import java.util.List;
 
 public class Poller {
 
@@ -15,18 +18,18 @@ public class Poller {
     this.pollDelayMillis = pollDelayMillis;
   }
 
-  public void check(Probe probe) throws InterruptedException {
+  public void check(Probe probe, Matcher<Iterable<? extends String>> matcher) throws InterruptedException {
 
     timeoutTime = System.currentTimeMillis() + timeoutMillis;
 
-    while (!probe.isSatisfied()) {
+    List<String> sample = probe.sample();
+    while (!matcher.matches(sample)) {
 
       if (timedOut())
-        throw new AssertionError(describeFailureOf(probe));
+        throw new AssertionError(describeFailureOf(sample, matcher));
 
       Thread.sleep(pollDelayMillis);
-
-      probe.sample();
+      sample = probe.sample();
     }
   }
 
@@ -34,9 +37,13 @@ public class Poller {
     return System.currentTimeMillis() > timeoutTime;
   }
 
-  private String describeFailureOf(Probe probe) {
+  private String describeFailureOf(List<String> sample, Matcher<Iterable<? extends String>> matcher) {
     Description description = new StringDescription();
-    probe.describeFailureTo(description);
+    description.appendText("\nExpected: ")
+               .appendDescriptionOf(matcher)
+               .appendText("\n     but: ");
+    matcher.describeMismatch(sample, description);
     return description.toString();
   }
+
 }

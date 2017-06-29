@@ -9,7 +9,7 @@ public class SlowList {
 
   void add(String element) {
     try {
-      Thread.sleep(3000);
+      Thread.sleep(200);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
