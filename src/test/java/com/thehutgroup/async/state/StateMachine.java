@@ -1,9 +1,9 @@
-package com.thehutgroup.state;
+package com.thehutgroup.async.state;
 
-import static com.thehutgroup.state.State.Completed;
-import static com.thehutgroup.state.State.Created;
-import static com.thehutgroup.state.State.Submitted;
-import static com.thehutgroup.state.State.Validating;
+import static com.thehutgroup.async.state.State.Completed;
+import static com.thehutgroup.async.state.State.Created;
+import static com.thehutgroup.async.state.State.Submitted;
+import static com.thehutgroup.async.state.State.Validating;
 import static java.util.concurrent.CompletableFuture.runAsync;
 
 public class StateMachine {

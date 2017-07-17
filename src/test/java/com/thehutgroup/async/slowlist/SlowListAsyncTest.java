@@ -1,8 +1,6 @@
-package com.thehutgroup;
+package com.thehutgroup.async.slowlist;
 
 import com.thehutgroup.async.Probe;
-import com.thehutgroup.async.SlowListProbe;
-import com.thehutgroup.slowlist.SlowList;
 
 import org.junit.Test;
 

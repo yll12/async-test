@@ -1,6 +1,6 @@
-package com.thehutgroup.async;
+package com.thehutgroup.async.slowlist;
 
-import com.thehutgroup.slowlist.SlowList;
+import com.thehutgroup.async.Probe;
 
 import java.util.List;
 

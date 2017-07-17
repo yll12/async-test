@@ -1,4 +1,4 @@
-package com.thehutgroup.state;
+package com.thehutgroup.async.state;
 
 public enum State {
 

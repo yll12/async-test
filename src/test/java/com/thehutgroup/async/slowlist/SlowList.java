@@ -1,4 +1,4 @@
-package com.thehutgroup.slowlist;
+package com.thehutgroup.async.slowlist;
 
 import java.util.LinkedList;
 import java.util.List;
