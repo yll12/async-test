@@ -2,7 +2,7 @@ package com.thehutgroup.async.state;
 
 import org.junit.Test;
 
-import static com.thehutgroup.async.AssertEventually.assertEventually;
+import static com.thehutgroup.async.AsynchronousAssert.assertEventually;
 import static com.thehutgroup.async.state.State.Completed;
 import static org.hamcrest.Matchers.equalTo;
 

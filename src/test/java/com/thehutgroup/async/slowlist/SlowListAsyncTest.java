@@ -4,7 +4,7 @@ import com.thehutgroup.async.Probe;
 
 import org.junit.Test;
 
-import static com.thehutgroup.async.AssertEventually.assertEventually;
+import static com.thehutgroup.async.AsynchronousAssert.assertEventually;
 import static java.util.concurrent.CompletableFuture.runAsync;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
