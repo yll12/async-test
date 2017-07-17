@@ -2,7 +2,7 @@ package com.thehutgroup;
 
 import com.thehutgroup.async.Probe;
 import com.thehutgroup.async.SlowListProbe;
-import com.thehutgroup.slowList.SlowList;
+import com.thehutgroup.slowlist.SlowList;
 
 import org.junit.Test;
 
