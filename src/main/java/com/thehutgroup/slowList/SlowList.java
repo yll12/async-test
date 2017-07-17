@@ -1,4 +1,4 @@
-package com.thehutgroup;
+package com.thehutgroup.slowList;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -7,7 +7,7 @@ public class SlowList {
 
   private List<String> list = new LinkedList<>();
 
-  void add(String element) {
+  public void add(String element) {
     try {
       Thread.sleep(200);
     } catch (InterruptedException e) {

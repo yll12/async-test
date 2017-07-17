@@ -1,15 +1,17 @@
 package com.thehutgroup;
 
+import com.thehutgroup.async.Probe;
 import com.thehutgroup.async.SlowListProbe;
+import com.thehutgroup.slowList.SlowList;
 
 import org.junit.Test;
 
 import static com.thehutgroup.async.AssertEventually.assertEventually;
-import static java.util.Arrays.asList;
 import static java.util.concurrent.CompletableFuture.runAsync;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThan;
 
 public class SlowListAsyncTest {
 
@@ -19,7 +21,7 @@ public class SlowListAsyncTest {
   public void addElementToSlowList() throws InterruptedException {
     runAsync(() -> slowList.add("succeed"));
 
-    assertThat(asList("succeed"), contains("fail"));
+//    assertThat(asList("succeed"), contains("fail"));
     assertEventually(
         slowList(), contains("succeed"));
   }
@@ -35,6 +37,19 @@ public class SlowListAsyncTest {
           message()
       ));
     }
+  }
+
+  @Test
+  public void counterTest() throws InterruptedException {
+    final Probe<Integer> probe = new Probe<Integer>() {
+      int i = 0;
+
+      @Override
+      public Integer sample() {
+        return i++;
+      }
+    };
+    assertEventually(probe, greaterThan(3));
   }
 
   private String message() {
